@@ -21,7 +21,7 @@ void CUtils::SetIcon(QPushButton* btn, QChar c, int size)
     btn->setText(c);
 }
 
-void CUtils::AutoRunWithSystem(bool IsAutoRun, QString AppName, QString AppPath)
+void CUtils::AutoRunWithSystem(bool IsAutoRun, const QString& AppName, const QString& AppPath)
 {
     QSettings *reg = new QSettings(
         "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run",
@@ -59,29 +59,29 @@ bool CUtils::SetChinese()
    return translator->load(":/image/qt_zh_CN.qm") && qApp->installTranslator(translator);
 }
 
-bool CUtils::IsIP(QString IP)
+bool CUtils::IsIP(const QString& IP)
 {
     QRegExp RegExp("((2[0-4]\\d|25[0-5]|[01]?\\d\\d?)\\.){3}(2[0-4]\\d|25[0-5]|[01]?\\d\\d?)");
     return RegExp.exactMatch(IP);
 }
 
-int CUtils::ShowMessageBoxInfo(QString info)
+int CUtils::ShowMsgBoxInfo(const QString& info)
 {
-    GuiMessageBox *msg = new GuiMessageBox();
+    GuiMsgBox *msg = new GuiMsgBox();
     msg->SetMessage(info, 0);
     return msg->exec();
 }
 
-int CUtils::ShowMessageBoxError(QString info)
+int CUtils::ShowMsgBoxError(const QString& info)
 {
-    GuiMessageBox *msg = new GuiMessageBox();
+    GuiMsgBox *msg = new GuiMsgBox();
     msg->SetMessage(info, 2);
     return msg->exec();
 }
 
-int CUtils::ShowMessageBoxQuesion(const QString& info)
+int CUtils::ShowMsgBoxQuesion(const QString& info)
 {
-    GuiMessageBox *msg = new GuiMessageBox();
+    GuiMsgBox *msg = new GuiMsgBox();
     msg->SetMessage(info, 1);
     return msg->exec();
 }

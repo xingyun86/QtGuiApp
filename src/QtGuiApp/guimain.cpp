@@ -6,11 +6,12 @@ GuiMain::GuiMain(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::GuiMain)
 {
-    auto& util = CUtils::Inst();
+    auto util = CUtils::Inst();
     ui->setupUi(this);
-
-    util.FormInCenter(this);
+    //设置窗体关闭时自动释放内存
+    this->setAttribute(Qt::WA_DeleteOnClose);
     this->InitStyle();
+    util->FormInCenter(this);
 }
 
 GuiMain::~GuiMain()
@@ -20,7 +21,7 @@ GuiMain::~GuiMain()
 
 void GuiMain::InitStyle()
 {
-    auto& util = CUtils::Inst();
+    auto util = CUtils::Inst();
     //设置窗体标题栏隐藏
     this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowSystemMenuHint | Qt::WindowMinMaxButtonsHint);
     location = this->geometry();
@@ -30,11 +31,11 @@ void GuiMain::InitStyle()
     //安装事件监听器,让标题栏识别鼠标双击
     ui->lab_Title->installEventFilter(this);
 
-    util.SetIcon(ui->btnMenu_Close, QChar(0xf00d), 10);
-    util.SetIcon(ui->btnMenu_Max, QChar(0xf096), 10);
-    util.SetIcon(ui->btnMenu_Min, QChar(0xf068), 10);
-    util.SetIcon(ui->btnMenu, QChar(0xf0c9), 10);
-    util.SetIcon(ui->lab_Ico, QChar(0xf015), 12);
+    util->SetIcon(ui->btnMenu_Close, QChar(0xf00d), 10);
+    util->SetIcon(ui->btnMenu_Max, QChar(0xf096), 10);
+    util->SetIcon(ui->btnMenu_Min, QChar(0xf068), 10);
+    util->SetIcon(ui->btnMenu, QChar(0xf0c9), 10);
+    util->SetIcon(ui->lab_Ico, QChar(0xf015), 12);
 }
 
 bool GuiMain::eventFilter(QObject *obj, QEvent *event)
@@ -78,18 +79,18 @@ void GuiMain::on_btnMenu_Close_clicked()
 
 void GuiMain::on_btnMenu_Max_clicked()
 {
-    auto& util = CUtils::Inst();
+    auto util = CUtils::Inst();
     if (max)
     {
         this->setGeometry(location);
-        util.SetIcon(ui->btnMenu_Max, QChar(0xf096), 10);
+        util->SetIcon(ui->btnMenu_Max, QChar(0xf096), 10);
         ui->btnMenu_Max->setToolTip("最大化");
     }
     else
     {
         location = this->geometry();
         this->setGeometry(QGuiApplication::screens().at(0)->availableGeometry());
-        util.SetIcon(ui->btnMenu_Max, QChar(0xf079), 10);
+        util->SetIcon(ui->btnMenu_Max, QChar(0xf079), 10);
         ui->btnMenu_Max->setToolTip("还原");
     }
     max = !max;
@@ -102,26 +103,26 @@ void GuiMain::on_btnMenu_Min_clicked()
 
 void GuiMain::on_pushButton_clicked()
 {
-    auto& util = CUtils::Inst();
-    util.ShowMessageBoxInfo("恭喜你，选择老公成功!");
+    auto util = CUtils::Inst();
+    util->ShowMsgBoxInfo("恭喜你，选择老公成功!");
 }
 
 void GuiMain::on_pushButton_2_clicked()
 {
-    auto& util = CUtils::Inst();
-    int result = util.ShowMessageBoxQuesion("确定真的不要我了吗?");
+    auto util = CUtils::Inst();
+    int result = util->ShowMsgBoxQuesion("确定真的不要我了吗?");
     if (result == 1)
     {
-        util.ShowMessageBoxInfo("你好狠心啊!");
+        util->ShowMsgBoxInfo("你好狠心啊!");
     }
     else
     {
-        util.ShowMessageBoxInfo("亲爱的,我就知道你不会离开我的!");
+        util->ShowMsgBoxInfo("亲爱的,我就知道你不会离开我的!");
     }
 }
 
 void GuiMain::on_pushButton_3_clicked()
 {
-    auto& util = CUtils::Inst();
-    util.ShowMessageBoxError("老公在呢!");
+    auto util = CUtils::Inst();
+    util->ShowMsgBoxError("老公在呢!");
 }

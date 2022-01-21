@@ -1,5 +1,5 @@
-#ifndef __GUIMAIN_H
-#define __GUIMAIN_H
+#ifndef GUIMAIN_H
+#define GUIMAIN_H
 
 #include <QDialog>
 #include "utils.h"
@@ -46,4 +46,4 @@ private:
 
 };
 
-#endif // __GUIMAIN_H
+#endif // GUIMAIN_H

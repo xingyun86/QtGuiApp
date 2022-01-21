@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>GuiMessageBox</class>
- <widget class="QDialog" name="GuiMessageBox">
+ <class>GuiMsgBox</class>
+ <widget class="QDialog" name="GuiMsgBox">
   <property name="geometry">
    <rect>
     <x>0</x>

@@ -10,7 +10,7 @@
 #include <QFontDatabase>
 #include <QPushButton>
 #include <QApplication>
-#include "guimessagebox.h"
+#include "guimsgbox.h"
 
 class CUtils: public QObject
 {
@@ -19,20 +19,20 @@ class CUtils: public QObject
 public:
     void SetIcon(QLabel* lab, QChar c, int size = 10);
     void SetIcon(QPushButton* btn, QChar c, int size = 10);
-    void AutoRunWithSystem(bool IsAutoRun, QString AppName, QString AppPath);
+    void AutoRunWithSystem(bool IsAutoRun, const QString& AppName, const QString& AppPath);
     void SetUTF8Code();
     void SetStyle(const QString &styleName);
     bool SetChinese();
-    bool IsIP(QString IP);
-    int ShowMessageBoxInfo(QString info);
-    int ShowMessageBoxError(QString info);
-    int ShowMessageBoxQuesion(const QString& info);
+    bool IsIP(const QString& IP);
+    int ShowMsgBoxInfo(const QString& info);
+    int ShowMsgBoxError(const QString& info);
+    int ShowMsgBoxQuesion(const QString& info);
     void Sleep(int msecs);
     void FormInCenter(QWidget *w);
 public:
-    static CUtils& Inst()
+    static CUtils* Inst()
     {
-        static CUtils CUtilsInstance;
+        static CUtils *CUtilsInstance = new CUtils();
         return CUtilsInstance;
     }
 };

@@ -14,18 +14,18 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
     guimain.cpp \
-    guimessagebox.cpp \
+    guimsgbox.cpp \
     utils.cpp
 
 HEADERS  += \
     guimain.h \
-    guimessagebox.h \
+    guimsgbox.h \
     iconhelper.h \
     utils.h
 
 FORMS    += \
     guimain.ui \
-    guimessagebox.ui
+    guimsgbox.ui
 
 RESOURCES += \
     rc.qrc
